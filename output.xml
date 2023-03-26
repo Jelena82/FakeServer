@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.10.10 on win32)" generated="20230326 14:34:41.167" rpa="false" schemaversion="3">
+<suite id="s1" name="Test Server" source="C:\Users\Jelena\PycharmProjects\FakeServer\test_server.robot">
+<test id="s1-t1" name="Start_Localhost_Server_and Continue_Testing" line="22">
+<kw name="Start Server" library="app">
+<status status="PASS" starttime="20230326 14:34:41.444" endtime="20230326 14:34:41.445"/>
+</kw>
+<status status="PASS" starttime="20230326 14:34:41.443" endtime="20230326 14:34:41.445"/>
+</test>
+<test id="s1-t2" name="Test_001_API_Base_Endpoint" line="25">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230326 14:34:41.448" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230326 14:34:41.447" endtime="20230326 14:34:41.459"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${Get_Response}</var>
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230326 14:34:41.976" level="INFO">GET Request : url=http://127.0.0.1:5000/api (redirected) 
+ path_url=/api 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230326 14:34:41.976" level="INFO">GET Response : url=http://127.0.0.1:5000/api/ 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Sun, 26 Mar 2023 12:34:41 GMT', 'Content-Type': 'application/json', 'Content-Length': '142', 'Connection': 'close'} 
+ body={"people":"http://127.0.0.1:5000/api/people","planets":"http://127.0.0.1:5000/api/planets","starships":"http://127.0.0.1:5000/api/starships"}
+ 
+ </msg>
+<msg timestamp="20230326 14:34:41.976" level="INFO">* Debug mode: off</msg>
+<msg timestamp="20230326 14:34:41.976" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230326 14:34:41.461" endtime="20230326 14:34:41.976"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${json_response}</var>
+<arg>${Get_Response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230326 14:34:41.977" level="INFO">${json_response} = {'people': 'http://127.0.0.1:5000/api/people', 'planets': 'http://127.0.0.1:5000/api/planets', 'starships': 'http://127.0.0.1:5000/api/starships'}</msg>
+<status status="PASS" starttime="20230326 14:34:41.977" endtime="20230326 14:34:41.977"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${json_response}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230326 14:34:41.978" endtime="20230326 14:34:41.978"/>
+</kw>
+<kw name="get value from json">
+<var>@{first_name_data}</var>
+<arg>${json_response}</arg>
+<arg>people</arg>
+<msg timestamp="20230326 14:34:41.981" level="FAIL">No keyword with name 'get value from json' found. Did you try using keyword 'RequestsLibrary.GET' and forgot to use enough whitespace between keyword and arguments?</msg>
+<status status="FAIL" starttime="20230326 14:34:41.981" endtime="20230326 14:34:41.981"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${f_name}</var>
+<arg>${first_name_data}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<status status="NOT RUN" starttime="20230326 14:34:41.982" endtime="20230326 14:34:41.982"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${f_name}</arg>
+<arg>${API_Base_Endpoint}/people</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20230326 14:34:41.983" endtime="20230326 14:34:41.983"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${f_name}==${API_Base_Endpoint}/people</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20230326 14:34:41.983" endtime="20230326 14:34:41.983"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<status status="NOT RUN" starttime="20230326 14:34:41.984" endtime="20230326 14:34:41.984"/>
+</kw>
+<status status="FAIL" starttime="20230326 14:34:41.447" endtime="20230326 14:34:41.985">No keyword with name 'get value from json' found. Did you try using keyword 'RequestsLibrary.GET' and forgot to use enough whitespace between keyword and arguments?</status>
+</test>
+<test id="s1-t3" name="Test_002_API_People_Endpoint" line="36">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/people</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230326 14:34:41.987" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/people, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230326 14:34:41.987" endtime="20230326 14:34:41.987"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${Get_Response}</var>
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/people</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230326 14:34:41.996" level="INFO">GET Request : url=http://127.0.0.1:5000/api/people (redirected) 
+ path_url=/api/people 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230326 14:34:41.996" level="INFO">GET Response : url=http://127.0.0.1:5000/api/people/ 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Sun, 26 Mar 2023 12:34:41 GMT', 'Content-Type': 'application/json', 'Content-Length': '65462', 'Connection': 'close'} 
+ body={"results":[{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gende... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20230326 14:34:41.997" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230326 14:34:41.987" endtime="20230326 14:34:41.997"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${json_response}</var>
+<arg>${Get_Response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230326 14:34:42.000" level="INFO">${json_response} = {'results': [{'birth_year': '19BBY', 'created': '2014-12-09T13:50:51.644000Z', 'edited': '2014-12-20T21:17:56.891000Z', 'eye_color': 'blue', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi....</msg>
+<status status="PASS" starttime="20230326 14:34:41.998" endtime="20230326 14:34:42.001"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${json_response}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230326 14:34:42.001" endtime="20230326 14:34:42.031"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20230326 14:34:42.032" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230326 14:34:42.032" endtime="20230326 14:34:42.032"/>
+</kw>
+<status status="PASS" starttime="20230326 14:34:41.986" endtime="20230326 14:34:42.033"/>
+</test>
+<test id="s1-t4" name="Test_003_API_Planets_Endpoint" line="43">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/planets</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230326 14:34:42.036" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/planets, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230326 14:34:42.035" endtime="20230326 14:34:42.036"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${Get_Response}</var>
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/planets</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230326 14:34:42.045" level="INFO">GET Request : url=http://127.0.0.1:5000/api/planets (redirected) 
+ path_url=/api/planets 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230326 14:34:42.045" level="INFO">GET Response : url=http://127.0.0.1:5000/api/planets/ 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Sun, 26 Mar 2023 12:34:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '84652', 'Connection': 'close'} 
+ body={"results":[{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_wate... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20230326 14:34:42.045" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230326 14:34:42.036" endtime="20230326 14:34:42.045"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${json_response}</var>
+<arg>${Get_Response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230326 14:34:42.048" level="INFO">${json_response} = {'results': [{'climate': 'arid', 'created': '2014-12-09T13:50:49.641000Z', 'diameter': '10465', 'edited': '2014-12-20T20:58:18.411000Z', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/...</msg>
+<status status="PASS" starttime="20230326 14:34:42.046" endtime="20230326 14:34:42.048"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${json_response}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230326 14:34:42.049" endtime="20230326 14:34:42.088"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20230326 14:34:42.089" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230326 14:34:42.089" endtime="20230326 14:34:42.089"/>
+</kw>
+<status status="PASS" starttime="20230326 14:34:42.034" endtime="20230326 14:34:42.090"/>
+</test>
+<test id="s1-t5" name="Test_004_API_Starships_Endpoint" line="50">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/starships</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230326 14:34:42.092" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/starships, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230326 14:34:42.091" endtime="20230326 14:34:42.092"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${Get_Response}</var>
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/starships</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230326 14:34:42.101" level="INFO">GET Request : url=http://127.0.0.1:5000/api/starships (redirected) 
+ path_url=/api/starships 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230326 14:34:42.101" level="INFO">GET Response : url=http://127.0.0.1:5000/api/starships/ 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Sun, 26 Mar 2023 12:34:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '57382', 'Connection': 'close'} 
+ body={"results":[{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"1... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20230326 14:34:42.101" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230326 14:34:42.093" endtime="20230326 14:34:42.101"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${json_response}</var>
+<arg>${Get_Response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230326 14:34:42.104" level="INFO">${json_response} = {'results': [{'MGLT': '60', 'cargo_capacity': '3000000', 'consumables': '1 year', 'cost_in_credits': '3500000', 'created': '2014-12-10T14:20:33.369000Z', 'crew': '30-165', 'edited': '2014-12-20T21:23:...</msg>
+<status status="PASS" starttime="20230326 14:34:42.102" endtime="20230326 14:34:42.104"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${json_response}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230326 14:34:42.104" endtime="20230326 14:34:42.125"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20230326 14:34:42.126" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230326 14:34:42.126" endtime="20230326 14:34:42.126"/>
+</kw>
+<status status="PASS" starttime="20230326 14:34:42.091" endtime="20230326 14:34:42.126"/>
+</test>
+<test id="s1-t6" name="Test_006_API_Send_Delayed_Request" line="67">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/delayed_request</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230326 14:34:42.129" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/delayed_request, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230326 14:34:42.128" endtime="20230326 14:34:42.129"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${Get_Response}</var>
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/delayed_request</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230326 14:34:42.258" level="INFO">GET Request : url=http://127.0.0.1:5000/api/delayed_request (redirected) 
+ path_url=/api/delayed_request 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230326 14:34:42.258" level="INFO">GET Response : url=http://127.0.0.1:5000/api/delayed_request/ 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Sun, 26 Mar 2023 12:34:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '48', 'Connection': 'close'} 
+ body={"message":"Delayed response for 0.11 seconds"}
+ 
+ </msg>
+<msg timestamp="20230326 14:34:42.259" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230326 14:34:42.130" endtime="20230326 14:34:42.259"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${Get_Response.json()['message']}</arg>
+<arg>Delayed response for</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230326 14:34:42.261" endtime="20230326 14:34:42.264"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${Get_Response.json()['message']}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230326 14:34:42.265" endtime="20230326 14:34:42.268"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20230326 14:34:42.270" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230326 14:34:42.270" endtime="20230326 14:34:42.271"/>
+</kw>
+<status status="PASS" starttime="20230326 14:34:42.128" endtime="20230326 14:34:42.273"/>
+</test>
+<test id="s1-t7" name="Test_007_API_Endpoint_Response_Time" line="83">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/test_people</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230326 14:34:42.280" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/test_people, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230326 14:34:42.279" endtime="20230326 14:34:42.281"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${Get_Response}</var>
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/test_people</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230326 14:35:42.597" level="INFO">GET Request : url=http://127.0.0.1:5000/api/test_people (redirected) 
+ path_url=/api/test_people 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230326 14:35:42.598" level="INFO">GET Response : url=http://127.0.0.1:5000/api/test_people/ 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Sun, 26 Mar 2023 12:35:42 GMT', 'Content-Type': 'application/json', 'Content-Length': '83', 'Connection': 'close'} 
+ body={"mean_response_time":5.251949152542374,"std_dev_response_time":3.216769699947337}
+ 
+ </msg>
+<msg timestamp="20230326 14:35:42.598" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230326 14:34:42.283" endtime="20230326 14:35:42.598"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>mean_response_time=${Get_Response.json()['mean_response_time']}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230326 14:35:42.600" endtime="20230326 14:35:42.604"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>std_dev_response_time=${Get_Response.json()['std_dev_response_time']}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230326 14:35:42.606" endtime="20230326 14:35:42.609"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20230326 14:35:42.612" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230326 14:35:42.611" endtime="20230326 14:35:42.612"/>
+</kw>
+<status status="PASS" starttime="20230326 14:34:42.277" endtime="20230326 14:35:42.614"/>
+</test>
+<test id="s1-t8" name="Stop_Localhost_Server" line="94">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/shutdown</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230326 14:35:42.620" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/shutdown, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230326 14:35:42.620" endtime="20230326 14:35:42.621"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${Get_Response}</var>
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}/shutdown</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230326 14:35:42.629" level="INFO">GET Request : url=http://127.0.0.1:5000/api/shutdown 
+ path_url=/api/shutdown 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230326 14:35:42.629" level="INFO">GET Response : url=http://127.0.0.1:5000/api/shutdown 
+ status=204, reason=NO CONTENT 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Sun, 26 Mar 2023 12:35:42 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Connection': 'close'} 
+ body=None 
+ </msg>
+<msg timestamp="20230326 14:35:42.629" level="INFO">${Get_Response} = &lt;Response [204]&gt;</msg>
+<status status="PASS" starttime="20230326 14:35:42.622" endtime="20230326 14:35:42.629"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${Get_Response}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230326 14:35:42.630" endtime="20230326 14:35:42.631"/>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20230326 14:35:42.632" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230326 14:35:42.632" endtime="20230326 14:35:42.632"/>
+</kw>
+<status status="PASS" starttime="20230326 14:35:42.618" endtime="20230326 14:35:42.633"/>
+</test>
+<status status="FAIL" starttime="20230326 14:34:41.169" endtime="20230326 14:35:42.634"/>
+</suite>
+<statistics>
+<total>
+<stat pass="7" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="7" fail="1" skip="0" id="s1" name="Test Server">Test Server</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230326 14:34:41.434" level="ERROR">Error in file 'C:\Users\Jelena\PycharmProjects\FakeServer\test_server.robot' on line 5: Importing library 'JSONLibrary' failed: ModuleNotFoundError: No module named 'JSONLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\Jelena\fake-server\Scripts\robot.exe
+  C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\python310.zip
+  C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\DLLs
+  C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.2800.0_x64__qbz5n2kfra8p0\lib
+  C:\Users\Jelena\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0
+  C:\Users\Jelena\fake-server
+  C:\Users\Jelena\fake-server\lib\site-packages</msg>
+</errors>
+</robot>
