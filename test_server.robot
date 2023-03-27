@@ -4,6 +4,7 @@ Library    Process
 Library    RequestsLibrary
 Library    JSONLibrary
 Library    Collections
+Library    BuiltIn
 
 
 *** Variables ***
@@ -19,7 +20,7 @@ ${API_Base_Endpoint}    http://127.0.0.1:5000/api
 #        c) shuts down the environment
 #        d) prints out the test execution results to the console
 
-Start_Localhost_Server_and Continue_Testing
+Start_Localhost_Server_and_Continue_Testing
     Start Server
 
 Test_001_API_Base_Endpoint
@@ -70,11 +71,12 @@ Test_004_API_Starships_Endpoint
     log to console       ${value}==CR90 corvette
     Delete All Sessions
 
-#   Test_005_API_Edge_Case_Should_Fail
-#    Create Session       API_Testing                            ${API_Base_Endpoint}/people/101/
-#    ${Get_Response}=     GET On Session      API_Testing        ${API_Base_Endpoint}/people/101/
-#    log to console       response= ${Get_Response}
-#    Delete All Sessions
+Test_005_API_Edge_Case
+    Create Session       API_Testing             ${API_Base_Endpoint}
+    ${response}=         GET On Session          API_Testing                 http://127.0.0.1:5000/api/people/101/    expected_status=404
+    ${status_code}=      convert to string       ${response.status_code}
+    should be equal      ${status_code}          404
+    log to console       ${response.status_code}==404
 
 
 #   Task #2: Performance test suite
@@ -108,7 +110,6 @@ Test_007_API_Endpoint_Response_Time
 #   a similar effect.
 
 Stop_Localhost_Server
-    Create Session       API_Testing            ${API_Base_Endpoint}/shutdown
-    ${Get_Response}=     GET On Session         API_Testing            ${API_Base_Endpoint}/shutdown
-    log to console       ${Get_Response}
+    Create Session       API_Testing            ${API_Base_Endpoint}
+    POST On Session      API_Testing            ${API_Base_Endpoint}/shutdown       expected_status=500
     Delete All Sessions

@@ -1,473 +1,523 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.10.10 on win32)" generated="20230327 08:51:06.511" rpa="false" schemaversion="3">
-<suite id="s1" name="Test Server" source="C:\Users\Jelena\PycharmProjects\FakeServer\FakeServer\test_server.robot">
-<test id="s1-t1" name="Start_Localhost_Server_and Continue_Testing" line="22">
+<robot generator="Robot 6.0.2 (Python 3.10.10 on win32)" generated="20230327 22:12:28.982" rpa="false" schemaversion="3">
+<suite id="s1" name="Test Server" source="C:\Users\Jelena\PycharmProjects\pythonProject\FakeServer\test_server.robot">
+<test id="s1-t1" name="Start_Localhost_Server_and_Continue_Testing" line="23">
 <kw name="Start Server" library="app">
-<status status="PASS" starttime="20230327 08:51:06.946" endtime="20230327 08:51:06.946"/>
+<status status="PASS" starttime="20230327 22:12:29.335" endtime="20230327 22:12:29.336"/>
 </kw>
-<status status="PASS" starttime="20230327 08:51:06.944" endtime="20230327 08:51:06.947"/>
+<status status="PASS" starttime="20230327 22:12:29.335" endtime="20230327 22:12:29.337"/>
 </test>
-<test id="s1-t2" name="Test_001_API_Base_Endpoint" line="25">
+<test id="s1-t2" name="Test_001_API_Base_Endpoint" line="26">
 <kw name="Create Session" library="RequestsLibrary">
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20230327 08:51:06.950" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20230327 08:51:06.950" endtime="20230327 08:51:06.951"/>
+<msg timestamp="20230327 22:12:29.340" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230327 22:12:29.340" endtime="20230327 22:12:29.340"/>
 </kw>
 <kw name="GET On Session" library="RequestsLibrary">
 <var>${Get_Response}</var>
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<msg timestamp="20230327 08:51:07.484" level="INFO">GET Request : url=http://127.0.0.1:5000/api (redirected) 
+<msg timestamp="20230327 22:12:29.872" level="INFO">GET Request : url=http://127.0.0.1:5000/api (redirected) 
  path_url=/api 
  headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg timestamp="20230327 08:51:07.484" level="INFO">GET Response : url=http://127.0.0.1:5000/api/ 
+<msg timestamp="20230327 22:12:29.872" level="INFO">GET Response : url=http://127.0.0.1:5000/api/ 
  status=200, reason=OK 
- headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 06:51:07 GMT', 'Content-Type': 'application/json', 'Content-Length': '142', 'Connection': 'close'} 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 20:12:29 GMT', 'Content-Type': 'application/json', 'Content-Length': '142', 'Connection': 'close'} 
  body={"people":"http://127.0.0.1:5000/api/people","planets":"http://127.0.0.1:5000/api/planets","starships":"http://127.0.0.1:5000/api/starships"}
  
  </msg>
-<msg timestamp="20230327 08:51:07.485" level="INFO">* Serving Flask app 'app'
- * Debug mode: off</msg>
-<msg timestamp="20230327 08:51:07.485" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230327 08:51:06.951" endtime="20230327 08:51:07.485"/>
+<msg timestamp="20230327 22:12:29.872" level="INFO">* Debug mode: off</msg>
+<msg timestamp="20230327 22:12:29.873" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230327 22:12:29.341" endtime="20230327 22:12:29.873"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${json_response}</var>
 <arg>${Get_Response.json()}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230327 08:51:07.491" level="INFO">${json_response} = {'people': 'http://127.0.0.1:5000/api/people', 'planets': 'http://127.0.0.1:5000/api/planets', 'starships': 'http://127.0.0.1:5000/api/starships'}</msg>
-<status status="PASS" starttime="20230327 08:51:07.487" endtime="20230327 08:51:07.491"/>
+<msg timestamp="20230327 22:12:29.877" level="INFO">${json_response} = {'people': 'http://127.0.0.1:5000/api/people', 'planets': 'http://127.0.0.1:5000/api/planets', 'starships': 'http://127.0.0.1:5000/api/starships'}</msg>
+<status status="PASS" starttime="20230327 22:12:29.875" endtime="20230327 22:12:29.877"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${json_response}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230327 08:51:07.493" endtime="20230327 08:51:07.495"/>
+<status status="PASS" starttime="20230327 22:12:29.879" endtime="20230327 22:12:29.881"/>
 </kw>
 <kw name="Get Value From Json" library="JSONLibrary">
 <var>@{first_name_data}</var>
 <arg>${json_response}</arg>
 <arg>people</arg>
 <doc>Get Value From JSON using JSONPath</doc>
-<msg timestamp="20230327 08:51:07.548" level="INFO">@{first_name_data} = [ http://127.0.0.1:5000/api/people ]</msg>
-<status status="PASS" starttime="20230327 08:51:07.497" endtime="20230327 08:51:07.548"/>
+<msg timestamp="20230327 22:12:29.919" level="INFO">@{first_name_data} = [ http://127.0.0.1:5000/api/people ]</msg>
+<status status="PASS" starttime="20230327 22:12:29.882" endtime="20230327 22:12:29.919"/>
 </kw>
 <kw name="Get From List" library="Collections">
 <var>${f_name}</var>
 <arg>${first_name_data}</arg>
 <arg>0</arg>
 <doc>Returns the value specified with an ``index`` from ``list``.</doc>
-<msg timestamp="20230327 08:51:07.550" level="INFO">${f_name} = http://127.0.0.1:5000/api/people</msg>
-<status status="PASS" starttime="20230327 08:51:07.550" endtime="20230327 08:51:07.550"/>
+<msg timestamp="20230327 22:12:29.920" level="INFO">${f_name} = http://127.0.0.1:5000/api/people</msg>
+<status status="PASS" starttime="20230327 22:12:29.920" endtime="20230327 22:12:29.920"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${f_name}</arg>
 <arg>${API_Base_Endpoint}/people</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20230327 08:51:07.550" endtime="20230327 08:51:07.551"/>
+<status status="PASS" starttime="20230327 22:12:29.920" endtime="20230327 22:12:29.920"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${f_name}==${API_Base_Endpoint}/people</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230327 08:51:07.552" endtime="20230327 08:51:07.552"/>
+<status status="PASS" starttime="20230327 22:12:29.921" endtime="20230327 22:12:29.921"/>
 </kw>
 <kw name="Delete All Sessions" library="RequestsLibrary">
 <doc>Removes all the session objects</doc>
-<msg timestamp="20230327 08:51:07.553" level="INFO">Deleting All Sessions</msg>
-<status status="PASS" starttime="20230327 08:51:07.553" endtime="20230327 08:51:07.553"/>
+<msg timestamp="20230327 22:12:29.922" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230327 22:12:29.922" endtime="20230327 22:12:29.923"/>
 </kw>
-<status status="PASS" starttime="20230327 08:51:06.948" endtime="20230327 08:51:07.554"/>
+<status status="PASS" starttime="20230327 22:12:29.339" endtime="20230327 22:12:29.923"/>
 </test>
-<test id="s1-t3" name="Test_002_API_People_Endpoint" line="36">
+<test id="s1-t3" name="Test_002_API_People_Endpoint" line="37">
 <kw name="Create Session" library="RequestsLibrary">
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/people</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20230327 08:51:07.557" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/people, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20230327 08:51:07.556" endtime="20230327 08:51:07.557"/>
+<msg timestamp="20230327 22:12:29.925" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/people, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230327 22:12:29.925" endtime="20230327 22:12:29.926"/>
 </kw>
 <kw name="GET On Session" library="RequestsLibrary">
 <var>${Get_Response}</var>
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/people</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<msg timestamp="20230327 08:51:07.566" level="INFO">GET Request : url=http://127.0.0.1:5000/api/people (redirected) 
+<msg timestamp="20230327 22:12:29.934" level="INFO">GET Request : url=http://127.0.0.1:5000/api/people (redirected) 
  path_url=/api/people 
  headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg timestamp="20230327 08:51:07.566" level="INFO">GET Response : url=http://127.0.0.1:5000/api/people/ 
+<msg timestamp="20230327 22:12:29.934" level="INFO">GET Response : url=http://127.0.0.1:5000/api/people/ 
  status=200, reason=OK 
- headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 06:51:07 GMT', 'Content-Type': 'application/json', 'Content-Length': '65462', 'Connection': 'close'} 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 20:12:29 GMT', 'Content-Type': 'application/json', 'Content-Length': '65462', 'Connection': 'close'} 
  body={"results":[{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gender":"male","hair_color":"blond","height":"172","homeworld":"https://swapi.dev/api/planets/1/","mass":"77","name":"Luke Skywalker","skin_color":"fair","species":[],"starships":["https://swapi.dev/api/starships/12/","https://swapi.dev/api/starships/22/"],"url":"https://swapi.dev/api/people/1/","vehicles":["https://swapi.dev/api/vehicles/14/","https://swapi.dev/api/vehicles/30/"]},{"birth_year":"19BBY","created":"2014-12-09T13:50:51.644000Z","edited":"2014-12-20T21:17:56.891000Z","eye_color":"blue","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/2/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"gende... (set the log level to DEBUG or TRACE to see the full content) 
  </msg>
-<msg timestamp="20230327 08:51:07.567" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230327 08:51:07.557" endtime="20230327 08:51:07.567"/>
+<msg timestamp="20230327 22:12:29.934" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230327 22:12:29.926" endtime="20230327 22:12:29.935"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${json_response}</var>
 <arg>${Get_Response.json()}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230327 08:51:07.571" level="INFO">${json_response} = {'results': [{'birth_year': '19BBY', 'created': '2014-12-09T13:50:51.644000Z', 'edited': '2014-12-20T21:17:56.891000Z', 'eye_color': 'blue', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi....</msg>
-<status status="PASS" starttime="20230327 08:51:07.568" endtime="20230327 08:51:07.571"/>
+<msg timestamp="20230327 22:12:29.937" level="INFO">${json_response} = {'results': [{'birth_year': '19BBY', 'created': '2014-12-09T13:50:51.644000Z', 'edited': '2014-12-20T21:17:56.891000Z', 'eye_color': 'blue', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi....</msg>
+<status status="PASS" starttime="20230327 22:12:29.935" endtime="20230327 22:12:29.937"/>
 </kw>
 <kw name="Get Value From Json" library="JSONLibrary">
 <var>@{data}</var>
 <arg>${json_response}</arg>
 <arg>results</arg>
 <doc>Get Value From JSON using JSONPath</doc>
-<msg timestamp="20230327 08:51:07.597" level="INFO">@{data} = [ [{'birth_year': '19BBY', 'created': '2014-12-09T13:50:51.644000Z', 'edited': '2014-12-20T21:17:56.891000Z', 'eye_color': 'blue', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/fi...</msg>
-<status status="PASS" starttime="20230327 08:51:07.572" endtime="20230327 08:51:07.597"/>
+<msg timestamp="20230327 22:12:29.960" level="INFO">@{data} = [ [{'birth_year': '19BBY', 'created': '2014-12-09T13:50:51.644000Z', 'edited': '2014-12-20T21:17:56.891000Z', 'eye_color': 'blue', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/fi...</msg>
+<status status="PASS" starttime="20230327 22:12:29.939" endtime="20230327 22:12:29.960"/>
 </kw>
 <kw name="Get From List" library="Collections">
 <var>${unpacked_data}</var>
 <arg>${data}</arg>
 <arg>0</arg>
 <doc>Returns the value specified with an ``index`` from ``list``.</doc>
-<msg timestamp="20230327 08:51:07.600" level="INFO">${unpacked_data} = [{'birth_year': '19BBY', 'created': '2014-12-09T13:50:51.644000Z', 'edited': '2014-12-20T21:17:56.891000Z', 'eye_color': 'blue', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/film...</msg>
-<status status="PASS" starttime="20230327 08:51:07.599" endtime="20230327 08:51:07.600"/>
+<msg timestamp="20230327 22:12:29.962" level="INFO">${unpacked_data} = [{'birth_year': '19BBY', 'created': '2014-12-09T13:50:51.644000Z', 'edited': '2014-12-20T21:17:56.891000Z', 'eye_color': 'blue', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/film...</msg>
+<status status="PASS" starttime="20230327 22:12:29.961" endtime="20230327 22:12:29.962"/>
 </kw>
 <kw name="Get From List" library="Collections">
 <var>${name}</var>
 <arg>${unpacked_data}</arg>
 <arg>0</arg>
 <doc>Returns the value specified with an ``index`` from ``list``.</doc>
-<msg timestamp="20230327 08:51:07.601" level="INFO">${name} = {'birth_year': '19BBY', 'created': '2014-12-09T13:50:51.644000Z', 'edited': '2014-12-20T21:17:56.891000Z', 'eye_color': 'blue', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/films...</msg>
-<status status="PASS" starttime="20230327 08:51:07.601" endtime="20230327 08:51:07.601"/>
+<msg timestamp="20230327 22:12:29.963" level="INFO">${name} = {'birth_year': '19BBY', 'created': '2014-12-09T13:50:51.644000Z', 'edited': '2014-12-20T21:17:56.891000Z', 'eye_color': 'blue', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/films...</msg>
+<status status="PASS" starttime="20230327 22:12:29.963" endtime="20230327 22:12:29.963"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${value}</var>
 <arg>${name}</arg>
 <arg>name</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230327 08:51:07.602" level="INFO">${value} = Luke Skywalker</msg>
-<status status="PASS" starttime="20230327 08:51:07.602" endtime="20230327 08:51:07.602"/>
+<msg timestamp="20230327 22:12:29.964" level="INFO">${value} = Luke Skywalker</msg>
+<status status="PASS" starttime="20230327 22:12:29.964" endtime="20230327 22:12:29.964"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${value}</arg>
 <arg>Luke Skywalker</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20230327 08:51:07.603" endtime="20230327 08:51:07.603"/>
+<status status="PASS" starttime="20230327 22:12:29.964" endtime="20230327 22:12:29.965"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${value}==Luke Skywalker</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230327 08:51:07.604" endtime="20230327 08:51:07.605"/>
+<status status="PASS" starttime="20230327 22:12:29.965" endtime="20230327 22:12:29.966"/>
 </kw>
 <kw name="Delete All Sessions" library="RequestsLibrary">
 <doc>Removes all the session objects</doc>
-<msg timestamp="20230327 08:51:07.606" level="INFO">Deleting All Sessions</msg>
-<status status="PASS" starttime="20230327 08:51:07.606" endtime="20230327 08:51:07.606"/>
+<msg timestamp="20230327 22:12:29.966" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230327 22:12:29.966" endtime="20230327 22:12:29.966"/>
 </kw>
-<status status="PASS" starttime="20230327 08:51:07.555" endtime="20230327 08:51:07.607"/>
+<status status="PASS" starttime="20230327 22:12:29.925" endtime="20230327 22:12:29.967"/>
 </test>
-<test id="s1-t4" name="Test_003_API_Planets_Endpoint" line="49">
+<test id="s1-t4" name="Test_003_API_Planets_Endpoint" line="50">
 <kw name="Create Session" library="RequestsLibrary">
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/planets</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20230327 08:51:07.610" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/planets, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20230327 08:51:07.610" endtime="20230327 08:51:07.610"/>
+<msg timestamp="20230327 22:12:29.968" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/planets, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230327 22:12:29.968" endtime="20230327 22:12:29.969"/>
 </kw>
 <kw name="GET On Session" library="RequestsLibrary">
 <var>${Get_Response}</var>
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/planets</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<msg timestamp="20230327 08:51:07.622" level="INFO">GET Request : url=http://127.0.0.1:5000/api/planets (redirected) 
+<msg timestamp="20230327 22:12:29.977" level="INFO">GET Request : url=http://127.0.0.1:5000/api/planets (redirected) 
  path_url=/api/planets 
  headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg timestamp="20230327 08:51:07.622" level="INFO">GET Response : url=http://127.0.0.1:5000/api/planets/ 
+<msg timestamp="20230327 22:12:29.977" level="INFO">GET Response : url=http://127.0.0.1:5000/api/planets/ 
  status=200, reason=OK 
- headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 06:51:07 GMT', 'Content-Type': 'application/json', 'Content-Length': '84652', 'Connection': 'close'} 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 20:12:29 GMT', 'Content-Type': 'application/json', 'Content-Length': '84652', 'Connection': 'close'} 
  body={"results":[{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_water":"1","terrain":"desert","url":"https://swapi.dev/api/planets/1/"},{"climate":"arid","created":"2014-12-09T13:50:49.641000Z","diameter":"10465","edited":"2014-12-20T20:58:18.411000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/4/","https://swapi.dev/api/films/5/","https://swapi.dev/api/films/6/"],"gravity":"1 standard","name":"Tatooine","orbital_period":"304","population":"200000","residents":["https://swapi.dev/api/people/1/","https://swapi.dev/api/people/2/","https://swapi.dev/api/people/4/","https://swapi.dev/api/people/6/","https://swapi.dev/api/people/7/","https://swapi.dev/api/people/8/","https://swapi.dev/api/people/9/","https://swapi.dev/api/people/11/","https://swapi.dev/api/people/43/","https://swapi.dev/api/people/62/"],"rotation_period":"23","surface_wate... (set the log level to DEBUG or TRACE to see the full content) 
  </msg>
-<msg timestamp="20230327 08:51:07.622" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230327 08:51:07.611" endtime="20230327 08:51:07.622"/>
+<msg timestamp="20230327 22:12:29.977" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230327 22:12:29.969" endtime="20230327 22:12:29.977"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${json_response}</var>
 <arg>${Get_Response.json()}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230327 08:51:07.626" level="INFO">${json_response} = {'results': [{'climate': 'arid', 'created': '2014-12-09T13:50:49.641000Z', 'diameter': '10465', 'edited': '2014-12-20T20:58:18.411000Z', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/...</msg>
-<status status="PASS" starttime="20230327 08:51:07.623" endtime="20230327 08:51:07.626"/>
+<msg timestamp="20230327 22:12:29.980" level="INFO">${json_response} = {'results': [{'climate': 'arid', 'created': '2014-12-09T13:50:49.641000Z', 'diameter': '10465', 'edited': '2014-12-20T20:58:18.411000Z', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/...</msg>
+<status status="PASS" starttime="20230327 22:12:29.978" endtime="20230327 22:12:29.980"/>
 </kw>
 <kw name="Get Value From Json" library="JSONLibrary">
 <var>@{data}</var>
 <arg>${json_response}</arg>
 <arg>results</arg>
 <doc>Get Value From JSON using JSONPath</doc>
-<msg timestamp="20230327 08:51:07.651" level="INFO">@{data} = [ [{'climate': 'arid', 'created': '2014-12-09T13:50:49.641000Z', 'diameter': '10465', 'edited': '2014-12-20T20:58:18.411000Z', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/films/...</msg>
-<status status="PASS" starttime="20230327 08:51:07.627" endtime="20230327 08:51:07.651"/>
+<msg timestamp="20230327 22:12:30.002" level="INFO">@{data} = [ [{'climate': 'arid', 'created': '2014-12-09T13:50:49.641000Z', 'diameter': '10465', 'edited': '2014-12-20T20:58:18.411000Z', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/films/...</msg>
+<status status="PASS" starttime="20230327 22:12:29.981" endtime="20230327 22:12:30.002"/>
 </kw>
 <kw name="Get From List" library="Collections">
 <var>${unpacked_data}</var>
 <arg>${data}</arg>
 <arg>0</arg>
 <doc>Returns the value specified with an ``index`` from ``list``.</doc>
-<msg timestamp="20230327 08:51:07.654" level="INFO">${unpacked_data} = [{'climate': 'arid', 'created': '2014-12-09T13:50:49.641000Z', 'diameter': '10465', 'edited': '2014-12-20T20:58:18.411000Z', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/films/3/...</msg>
-<status status="PASS" starttime="20230327 08:51:07.652" endtime="20230327 08:51:07.654"/>
+<msg timestamp="20230327 22:12:30.004" level="INFO">${unpacked_data} = [{'climate': 'arid', 'created': '2014-12-09T13:50:49.641000Z', 'diameter': '10465', 'edited': '2014-12-20T20:58:18.411000Z', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/films/3/...</msg>
+<status status="PASS" starttime="20230327 22:12:30.003" endtime="20230327 22:12:30.004"/>
 </kw>
 <kw name="Get From List" library="Collections">
 <var>${name}</var>
 <arg>${unpacked_data}</arg>
 <arg>0</arg>
 <doc>Returns the value specified with an ``index`` from ``list``.</doc>
-<msg timestamp="20230327 08:51:07.654" level="INFO">${name} = {'climate': 'arid', 'created': '2014-12-09T13:50:49.641000Z', 'diameter': '10465', 'edited': '2014-12-20T20:58:18.411000Z', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/films/3/'...</msg>
-<status status="PASS" starttime="20230327 08:51:07.654" endtime="20230327 08:51:07.655"/>
+<msg timestamp="20230327 22:12:30.005" level="INFO">${name} = {'climate': 'arid', 'created': '2014-12-09T13:50:49.641000Z', 'diameter': '10465', 'edited': '2014-12-20T20:58:18.411000Z', 'films': ['https://swapi.dev/api/films/1/', 'https://swapi.dev/api/films/3/'...</msg>
+<status status="PASS" starttime="20230327 22:12:30.005" endtime="20230327 22:12:30.005"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${value}</var>
 <arg>${name}</arg>
 <arg>name</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230327 08:51:07.655" level="INFO">${value} = Tatooine</msg>
-<status status="PASS" starttime="20230327 08:51:07.655" endtime="20230327 08:51:07.655"/>
+<msg timestamp="20230327 22:12:30.006" level="INFO">${value} = Tatooine</msg>
+<status status="PASS" starttime="20230327 22:12:30.006" endtime="20230327 22:12:30.006"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${value}</arg>
 <arg>Tatooine</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20230327 08:51:07.655" endtime="20230327 08:51:07.655"/>
+<status status="PASS" starttime="20230327 22:12:30.007" endtime="20230327 22:12:30.007"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${value}==Tatooine</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230327 08:51:07.656" endtime="20230327 08:51:07.657"/>
+<status status="PASS" starttime="20230327 22:12:30.007" endtime="20230327 22:12:30.008"/>
 </kw>
 <kw name="Delete All Sessions" library="RequestsLibrary">
 <doc>Removes all the session objects</doc>
-<msg timestamp="20230327 08:51:07.657" level="INFO">Deleting All Sessions</msg>
-<status status="PASS" starttime="20230327 08:51:07.657" endtime="20230327 08:51:07.658"/>
+<msg timestamp="20230327 22:12:30.008" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230327 22:12:30.008" endtime="20230327 22:12:30.009"/>
 </kw>
-<status status="PASS" starttime="20230327 08:51:07.609" endtime="20230327 08:51:07.658"/>
+<status status="PASS" starttime="20230327 22:12:29.968" endtime="20230327 22:12:30.009"/>
 </test>
-<test id="s1-t5" name="Test_004_API_Starships_Endpoint" line="61">
+<test id="s1-t5" name="Test_004_API_Starships_Endpoint" line="62">
 <kw name="Create Session" library="RequestsLibrary">
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/starships</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20230327 08:51:07.660" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/starships, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20230327 08:51:07.660" endtime="20230327 08:51:07.660"/>
+<msg timestamp="20230327 22:12:30.011" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/starships, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230327 22:12:30.011" endtime="20230327 22:12:30.012"/>
 </kw>
 <kw name="GET On Session" library="RequestsLibrary">
 <var>${Get_Response}</var>
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/starships</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<msg timestamp="20230327 08:51:07.669" level="INFO">GET Request : url=http://127.0.0.1:5000/api/starships (redirected) 
+<msg timestamp="20230327 22:12:30.019" level="INFO">GET Request : url=http://127.0.0.1:5000/api/starships (redirected) 
  path_url=/api/starships 
  headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg timestamp="20230327 08:51:07.669" level="INFO">GET Response : url=http://127.0.0.1:5000/api/starships/ 
+<msg timestamp="20230327 22:12:30.019" level="INFO">GET Response : url=http://127.0.0.1:5000/api/starships/ 
  status=200, reason=OK 
- headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 06:51:07 GMT', 'Content-Type': 'application/json', 'Content-Length': '57382', 'Connection': 'close'} 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 20:12:30 GMT', 'Content-Type': 'application/json', 'Content-Length': '57382', 'Connection': 'close'} 
  body={"results":[{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"150","manufacturer":"Corellian Engineering Corporation","max_atmosphering_speed":"950","model":"CR90 corvette","name":"CR90 corvette","passengers":"600","pilots":[],"starship_class":"corvette","url":"https://swapi.dev/api/starships/2/"},{"MGLT":"60","cargo_capacity":"3000000","consumables":"1 year","cost_in_credits":"3500000","created":"2014-12-10T14:20:33.369000Z","crew":"30-165","edited":"2014-12-20T21:23:49.867000Z","films":["https://swapi.dev/api/films/1/","https://swapi.dev/api/films/3/","https://swapi.dev/api/films/6/"],"hyperdrive_rating":"2.0","length":"1... (set the log level to DEBUG or TRACE to see the full content) 
  </msg>
-<msg timestamp="20230327 08:51:07.670" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230327 08:51:07.661" endtime="20230327 08:51:07.670"/>
+<msg timestamp="20230327 22:12:30.019" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230327 22:12:30.012" endtime="20230327 22:12:30.019"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${json_response}</var>
 <arg>${Get_Response.json()}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230327 08:51:07.674" level="INFO">${json_response} = {'results': [{'MGLT': '60', 'cargo_capacity': '3000000', 'consumables': '1 year', 'cost_in_credits': '3500000', 'created': '2014-12-10T14:20:33.369000Z', 'crew': '30-165', 'edited': '2014-12-20T21:23:...</msg>
-<status status="PASS" starttime="20230327 08:51:07.671" endtime="20230327 08:51:07.674"/>
+<msg timestamp="20230327 22:12:30.022" level="INFO">${json_response} = {'results': [{'MGLT': '60', 'cargo_capacity': '3000000', 'consumables': '1 year', 'cost_in_credits': '3500000', 'created': '2014-12-10T14:20:33.369000Z', 'crew': '30-165', 'edited': '2014-12-20T21:23:...</msg>
+<status status="PASS" starttime="20230327 22:12:30.020" endtime="20230327 22:12:30.022"/>
 </kw>
 <kw name="Get Value From Json" library="JSONLibrary">
 <var>@{data}</var>
 <arg>${json_response}</arg>
 <arg>results</arg>
 <doc>Get Value From JSON using JSONPath</doc>
-<msg timestamp="20230327 08:51:07.697" level="INFO">@{data} = [ [{'MGLT': '60', 'cargo_capacity': '3000000', 'consumables': '1 year', 'cost_in_credits': '3500000', 'created': '2014-12-10T14:20:33.369000Z', 'crew': '30-165', 'edited': '2014-12-20T21:23:49.867000Z...</msg>
-<status status="PASS" starttime="20230327 08:51:07.675" endtime="20230327 08:51:07.697"/>
+<msg timestamp="20230327 22:12:30.046" level="INFO">@{data} = [ [{'MGLT': '60', 'cargo_capacity': '3000000', 'consumables': '1 year', 'cost_in_credits': '3500000', 'created': '2014-12-10T14:20:33.369000Z', 'crew': '30-165', 'edited': '2014-12-20T21:23:49.867000Z...</msg>
+<status status="PASS" starttime="20230327 22:12:30.022" endtime="20230327 22:12:30.046"/>
 </kw>
 <kw name="Get From List" library="Collections">
 <var>${unpacked_data}</var>
 <arg>${data}</arg>
 <arg>0</arg>
 <doc>Returns the value specified with an ``index`` from ``list``.</doc>
-<msg timestamp="20230327 08:51:07.699" level="INFO">${unpacked_data} = [{'MGLT': '60', 'cargo_capacity': '3000000', 'consumables': '1 year', 'cost_in_credits': '3500000', 'created': '2014-12-10T14:20:33.369000Z', 'crew': '30-165', 'edited': '2014-12-20T21:23:49.867000Z',...</msg>
-<status status="PASS" starttime="20230327 08:51:07.698" endtime="20230327 08:51:07.699"/>
+<msg timestamp="20230327 22:12:30.048" level="INFO">${unpacked_data} = [{'MGLT': '60', 'cargo_capacity': '3000000', 'consumables': '1 year', 'cost_in_credits': '3500000', 'created': '2014-12-10T14:20:33.369000Z', 'crew': '30-165', 'edited': '2014-12-20T21:23:49.867000Z',...</msg>
+<status status="PASS" starttime="20230327 22:12:30.047" endtime="20230327 22:12:30.048"/>
 </kw>
 <kw name="Get From List" library="Collections">
 <var>${name}</var>
 <arg>${unpacked_data}</arg>
 <arg>0</arg>
 <doc>Returns the value specified with an ``index`` from ``list``.</doc>
-<msg timestamp="20230327 08:51:07.700" level="INFO">${name} = {'MGLT': '60', 'cargo_capacity': '3000000', 'consumables': '1 year', 'cost_in_credits': '3500000', 'created': '2014-12-10T14:20:33.369000Z', 'crew': '30-165', 'edited': '2014-12-20T21:23:49.867000Z', ...</msg>
-<status status="PASS" starttime="20230327 08:51:07.700" endtime="20230327 08:51:07.700"/>
+<msg timestamp="20230327 22:12:30.049" level="INFO">${name} = {'MGLT': '60', 'cargo_capacity': '3000000', 'consumables': '1 year', 'cost_in_credits': '3500000', 'created': '2014-12-10T14:20:33.369000Z', 'crew': '30-165', 'edited': '2014-12-20T21:23:49.867000Z', ...</msg>
+<status status="PASS" starttime="20230327 22:12:30.048" endtime="20230327 22:12:30.049"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${value}</var>
 <arg>${name}</arg>
 <arg>name</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20230327 08:51:07.701" level="INFO">${value} = CR90 corvette</msg>
-<status status="PASS" starttime="20230327 08:51:07.701" endtime="20230327 08:51:07.701"/>
+<msg timestamp="20230327 22:12:30.049" level="INFO">${value} = CR90 corvette</msg>
+<status status="PASS" starttime="20230327 22:12:30.049" endtime="20230327 22:12:30.049"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${value}</arg>
 <arg>CR90 corvette</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20230327 08:51:07.701" endtime="20230327 08:51:07.702"/>
+<status status="PASS" starttime="20230327 22:12:30.049" endtime="20230327 22:12:30.050"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${value}==CR90 corvette</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230327 08:51:07.702" endtime="20230327 08:51:07.702"/>
+<status status="PASS" starttime="20230327 22:12:30.050" endtime="20230327 22:12:30.050"/>
 </kw>
 <kw name="Delete All Sessions" library="RequestsLibrary">
 <doc>Removes all the session objects</doc>
-<msg timestamp="20230327 08:51:07.703" level="INFO">Deleting All Sessions</msg>
-<status status="PASS" starttime="20230327 08:51:07.703" endtime="20230327 08:51:07.703"/>
+<msg timestamp="20230327 22:12:30.051" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230327 22:12:30.051" endtime="20230327 22:12:30.052"/>
 </kw>
-<status status="PASS" starttime="20230327 08:51:07.659" endtime="20230327 08:51:07.705"/>
+<status status="PASS" starttime="20230327 22:12:30.011" endtime="20230327 22:12:30.052"/>
 </test>
-<test id="s1-t6" name="Test_006_API_Send_Delayed_Request" line="83">
+<test id="s1-t6" name="Test_005_API_Edge_Case" line="74">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>API_Testing</arg>
+<arg>${API_Base_Endpoint}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230327 22:12:30.053" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230327 22:12:30.053" endtime="20230327 22:12:30.053"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>API_Testing</arg>
+<arg>http://127.0.0.1:5000/api/people/101/</arg>
+<arg>expected_status=404</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230327 22:12:30.057" level="INFO">GET Request : url=http://127.0.0.1:5000/api/people/101/ 
+ path_url=/api/people/101/ 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230327 22:12:30.057" level="INFO">GET Response : url=http://127.0.0.1:5000/api/people/101/ 
+ status=404, reason=NOT FOUND 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 20:12:30 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '96', 'Connection': 'close'} 
+ body=&lt;!doctype html&gt;
+&lt;html lang=en&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;Not Found&lt;/p&gt;
+ 
+ </msg>
+<msg timestamp="20230327 22:12:30.058" level="INFO">${response} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20230327 22:12:30.053" endtime="20230327 22:12:30.058"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230327 22:12:30.059" level="INFO">${status_code} = 404</msg>
+<status status="PASS" starttime="20230327 22:12:30.058" endtime="20230327 22:12:30.059"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>404</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230327 22:12:30.059" endtime="20230327 22:12:30.059"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}==404</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230327 22:12:30.060" endtime="20230327 22:12:30.062"/>
+</kw>
+<status status="PASS" starttime="20230327 22:12:30.053" endtime="20230327 22:12:30.062"/>
+</test>
+<test id="s1-t7" name="Test_006_API_Send_Delayed_Request" line="85">
 <kw name="Create Session" library="RequestsLibrary">
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/delayed_request</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20230327 08:51:07.707" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/delayed_request, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20230327 08:51:07.707" endtime="20230327 08:51:07.707"/>
+<msg timestamp="20230327 22:12:30.064" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/delayed_request, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230327 22:12:30.064" endtime="20230327 22:12:30.064"/>
 </kw>
 <kw name="GET On Session" library="RequestsLibrary">
 <var>${Get_Response}</var>
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/delayed_request</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<msg timestamp="20230327 08:51:07.869" level="INFO">GET Request : url=http://127.0.0.1:5000/api/delayed_request (redirected) 
+<msg timestamp="20230327 22:12:30.321" level="INFO">GET Request : url=http://127.0.0.1:5000/api/delayed_request (redirected) 
  path_url=/api/delayed_request 
  headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg timestamp="20230327 08:51:07.870" level="INFO">GET Response : url=http://127.0.0.1:5000/api/delayed_request/ 
+<msg timestamp="20230327 22:12:30.321" level="INFO">GET Response : url=http://127.0.0.1:5000/api/delayed_request/ 
  status=200, reason=OK 
- headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 06:51:07 GMT', 'Content-Type': 'application/json', 'Content-Length': '48', 'Connection': 'close'} 
- body={"message":"Delayed response for 0.14 seconds"}
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 20:12:30 GMT', 'Content-Type': 'application/json', 'Content-Length': '48', 'Connection': 'close'} 
+ body={"message":"Delayed response for 0.25 seconds"}
  
  </msg>
-<msg timestamp="20230327 08:51:07.871" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230327 08:51:07.707" endtime="20230327 08:51:07.871"/>
+<msg timestamp="20230327 22:12:30.321" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230327 22:12:30.064" endtime="20230327 22:12:30.321"/>
 </kw>
 <kw name="Should Contain" library="BuiltIn">
 <arg>${Get_Response.json()['message']}</arg>
 <arg>Delayed response for</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" starttime="20230327 08:51:07.873" endtime="20230327 08:51:07.875"/>
+<status status="PASS" starttime="20230327 22:12:30.323" endtime="20230327 22:12:30.324"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${Get_Response.json()['message']}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230327 08:51:07.877" endtime="20230327 08:51:07.880"/>
+<status status="PASS" starttime="20230327 22:12:30.326" endtime="20230327 22:12:30.328"/>
 </kw>
 <kw name="Delete All Sessions" library="RequestsLibrary">
 <doc>Removes all the session objects</doc>
-<msg timestamp="20230327 08:51:07.884" level="INFO">Deleting All Sessions</msg>
-<status status="PASS" starttime="20230327 08:51:07.882" endtime="20230327 08:51:07.884"/>
+<msg timestamp="20230327 22:12:30.329" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230327 22:12:30.329" endtime="20230327 22:12:30.330"/>
 </kw>
-<status status="PASS" starttime="20230327 08:51:07.706" endtime="20230327 08:51:07.886"/>
+<status status="PASS" starttime="20230327 22:12:30.062" endtime="20230327 22:12:30.331"/>
 </test>
-<test id="s1-t7" name="Test_007_API_Endpoint_Response_Time" line="99">
+<test id="s1-t8" name="Test_007_API_Endpoint_Response_Time" line="101">
 <kw name="Create Session" library="RequestsLibrary">
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/test_people</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20230327 08:51:07.893" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/test_people, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20230327 08:51:07.892" endtime="20230327 08:51:07.894"/>
+<msg timestamp="20230327 22:12:30.336" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/test_people, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230327 22:12:30.335" endtime="20230327 22:12:30.337"/>
 </kw>
 <kw name="GET On Session" library="RequestsLibrary">
 <var>${Get_Response}</var>
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/test_people</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<msg timestamp="20230327 08:52:08.845" level="INFO">GET Request : url=http://127.0.0.1:5000/api/test_people (redirected) 
+<msg timestamp="20230327 22:13:30.657" level="INFO">GET Request : url=http://127.0.0.1:5000/api/test_people (redirected) 
  path_url=/api/test_people 
  headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg timestamp="20230327 08:52:08.845" level="INFO">GET Response : url=http://127.0.0.1:5000/api/test_people/ 
+<msg timestamp="20230327 22:13:30.657" level="INFO">GET Response : url=http://127.0.0.1:5000/api/test_people/ 
  status=200, reason=OK 
- headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 06:52:08 GMT', 'Content-Type': 'application/json', 'Content-Length': '84', 'Connection': 'close'} 
- body={"mean_response_time":10.024508474576272,"std_dev_response_time":3.255140572730042}
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 20:13:30 GMT', 'Content-Type': 'application/json', 'Content-Length': '83', 'Connection': 'close'} 
+ body={"mean_response_time":5.70701694915254,"std_dev_response_time":3.0707321022486678}
  
  </msg>
-<msg timestamp="20230327 08:52:08.846" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20230327 08:51:07.897" endtime="20230327 08:52:08.846"/>
+<msg timestamp="20230327 22:13:30.657" level="INFO">${Get_Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230327 22:12:30.338" endtime="20230327 22:13:30.657"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>mean_response_time=${Get_Response.json()['mean_response_time']}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230327 08:52:08.848" endtime="20230327 08:52:08.852"/>
+<status status="PASS" starttime="20230327 22:13:30.658" endtime="20230327 22:13:30.659"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>std_dev_response_time=${Get_Response.json()['std_dev_response_time']}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230327 08:52:08.854" endtime="20230327 08:52:08.857"/>
+<status status="PASS" starttime="20230327 22:13:30.660" endtime="20230327 22:13:30.661"/>
 </kw>
 <kw name="Delete All Sessions" library="RequestsLibrary">
 <doc>Removes all the session objects</doc>
-<msg timestamp="20230327 08:52:08.859" level="INFO">Deleting All Sessions</msg>
-<status status="PASS" starttime="20230327 08:52:08.858" endtime="20230327 08:52:08.860"/>
+<msg timestamp="20230327 22:13:30.662" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230327 22:13:30.662" endtime="20230327 22:13:30.662"/>
 </kw>
-<status status="PASS" starttime="20230327 08:51:07.891" endtime="20230327 08:52:08.862"/>
+<status status="PASS" starttime="20230327 22:12:30.334" endtime="20230327 22:13:30.663"/>
 </test>
-<test id="s1-t8" name="Stop_Localhost_Server" line="110">
+<test id="s1-t9" name="Stop_Localhost_Server" line="112">
 <kw name="Create Session" library="RequestsLibrary">
 <arg>API_Testing</arg>
-<arg>${API_Base_Endpoint}/shutdown</arg>
+<arg>${API_Base_Endpoint}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20230327 08:52:08.870" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api/shutdown, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20230327 08:52:08.869" endtime="20230327 08:52:08.871"/>
+<msg timestamp="20230327 22:13:30.665" level="INFO">Creating Session using : alias=API_Testing, url=http://127.0.0.1:5000/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230327 22:13:30.665" endtime="20230327 22:13:30.666"/>
 </kw>
-<kw name="GET On Session" library="RequestsLibrary">
-<var>${Get_Response}</var>
+<kw name="POST On Session" library="RequestsLibrary">
 <arg>API_Testing</arg>
 <arg>${API_Base_Endpoint}/shutdown</arg>
-<doc>Sends a GET request on a previously created HTTP Session.</doc>
-<msg timestamp="20230327 08:52:08.887" level="INFO">GET Request : url=http://127.0.0.1:5000/api/shutdown 
+<arg>expected_status=500</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230327 22:13:30.675" level="INFO">POST Request : url=http://127.0.0.1:5000/api/shutdown (redirected) 
  path_url=/api/shutdown 
- headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
  body=None 
  </msg>
-<msg timestamp="20230327 08:52:08.887" level="INFO">GET Response : url=http://127.0.0.1:5000/api/shutdown 
- status=204, reason=NO CONTENT 
- headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 06:52:08 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Connection': 'close'} 
- body=None 
+<msg timestamp="20230327 22:13:30.675" level="INFO">POST Response : url=http://127.0.0.1:5000/api/shutdown/ 
+ status=500, reason=INTERNAL SERVER ERROR 
+ headers={'Server': 'Werkzeug/2.2.3 Python/3.10.10', 'Date': 'Mon, 27 Mar 2023 20:13:30 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': '265', 'Connection': 'close'} 
+ body=&lt;!doctype html&gt;
+&lt;html lang=en&gt;
+&lt;title&gt;500 Internal Server Error&lt;/title&gt;
+&lt;h1&gt;Internal Server Error&lt;/h1&gt;
+&lt;p&gt;The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.&lt;/p&gt;
+ 
  </msg>
-<msg timestamp="20230327 08:52:08.888" level="INFO">${Get_Response} = &lt;Response [204]&gt;</msg>
-<status status="PASS" starttime="20230327 08:52:08.872" endtime="20230327 08:52:08.888"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${Get_Response}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230327 08:52:08.890" endtime="20230327 08:52:08.892"/>
+<status status="PASS" starttime="20230327 22:13:30.666" endtime="20230327 22:13:30.676"/>
 </kw>
 <kw name="Delete All Sessions" library="RequestsLibrary">
 <doc>Removes all the session objects</doc>
-<msg timestamp="20230327 08:52:08.894" level="INFO">Deleting All Sessions</msg>
-<status status="PASS" starttime="20230327 08:52:08.893" endtime="20230327 08:52:08.894"/>
+<msg timestamp="20230327 22:13:30.676" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230327 22:13:30.676" endtime="20230327 22:13:30.676"/>
 </kw>
-<status status="PASS" starttime="20230327 08:52:08.867" endtime="20230327 08:52:08.896"/>
+<status status="PASS" starttime="20230327 22:13:30.664" endtime="20230327 22:13:30.677"/>
 </test>
-<status status="PASS" starttime="20230327 08:51:06.521" endtime="20230327 08:52:08.900"/>
+<status status="PASS" starttime="20230327 22:12:28.984" endtime="20230327 22:13:30.679"/>
 </suite>
 <statistics>
 <total>
-<stat pass="8" fail="0" skip="0">All Tests</stat>
+<stat pass="9" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="8" fail="0" skip="0" id="s1" name="Test Server">Test Server</stat>
+<stat pass="9" fail="0" skip="0" id="s1" name="Test Server">Test Server</stat>
 </suite>
 </statistics>
 <errors>
