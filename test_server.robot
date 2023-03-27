@@ -35,23 +35,39 @@ Test_001_API_Base_Endpoint
 
 Test_002_API_People_Endpoint
     Create Session       API_Testing            ${API_Base_Endpoint}/people
-    ${Get_Response}=     GET On Session         API_Testing             ${API_Base_Endpoint}/people
+    ${Get_Response}=     GET On Session         API_Testing                 ${API_Base_Endpoint}/people
     ${json_response}=    set variable           ${Get_Response.json()}
-    log to console       ${json_response}
+    @{data}=             get value from json    ${json_response}            results
+    ${unpacked_data}=    get from list          ${data}                     0
+    ${name}=             get from list          ${unpacked_data}            0
+    ${value}=            get from dictionary    ${name}                     name
+    should be equal      ${value}               Luke Skywalker
+    log to console       ${value}==Luke Skywalker
     Delete All Sessions
+
 
 Test_003_API_Planets_Endpoint
     Create Session       API_Testing            ${API_Base_Endpoint}/planets
-    ${Get_Response}=     GET On Session         API_Testing             ${API_Base_Endpoint}/planets
+    ${Get_Response}=     GET On Session         API_Testing                 ${API_Base_Endpoint}/planets
     ${json_response}=    set variable           ${Get_Response.json()}
-    log to console       ${json_response}
+    @{data}=             get value from json    ${json_response}            results
+    ${unpacked_data}=    get from list          ${data}                     0
+    ${name}=             get from list          ${unpacked_data}            0
+    ${value}=            get from dictionary    ${name}                     name
+    should be equal      ${value}               Tatooine
+    log to console       ${value}==Tatooine
     Delete All Sessions
 
 Test_004_API_Starships_Endpoint
     Create Session       API_Testing            ${API_Base_Endpoint}/starships
-    ${Get_Response}=     GET On Session         API_Testing             ${API_Base_Endpoint}/starships
+    ${Get_Response}=     GET On Session         API_Testing                 ${API_Base_Endpoint}/starships
     ${json_response}=    set variable           ${Get_Response.json()}
-    log to console       ${json_response}
+    @{data}=             get value from json    ${json_response}            results
+    ${unpacked_data}=    get from list          ${data}                     0
+    ${name}=             get from list          ${unpacked_data}            0
+    ${value}=            get from dictionary    ${name}                     name
+    should be equal      ${value}               CR90 corvette
+    log to console       ${value}==CR90 corvette
     Delete All Sessions
 
 #   Test_005_API_Edge_Case_Should_Fail
